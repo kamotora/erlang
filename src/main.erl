@@ -38,11 +38,9 @@ move(N, Towers, From, To) ->
   Towers2 = move(1, Towers1, From, To),
   move(N - 1, Towers2, buf(From, To), To).
 
-buf(From, To) ->
-  if
-    From == To -> io:format("Error! From should be != To"), 0;
-    true -> 6 - From - To
-  end.
+buf(From, To) when From == To -> throw("Error! From should be != To");
+buf(From, To) -> 6 - From - To.
+
 %%move(Disk, [Disk | From], To, Buf) ->
 %%  util:printAndReturn([From, [Disk | To], Buf]);
 %%
